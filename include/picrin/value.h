@@ -71,7 +71,7 @@ pic_int(pic_value v)
 
 #elif PIC_WORD_BOXING
 
-typedef long pic_value;
+typedef unsigned long pic_value;
 
 #define pic_ptr(v) ((void *)(v))
 #define pic_init_value(v,vtype) do {            \
