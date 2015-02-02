@@ -97,9 +97,8 @@ main()
 {
   pic_state *pic;
   pic_value expr;
-  void *p;
 
-  pic = pic_open(pic_default_allocf, pic_default_setjmpf, pic_default_longjmpf, sizeof(jmp_buf), 0, NULL, NULL, p = xfopen(), xfopen(), xfopen());
+  pic = pic_open(pic_default_allocf, pic_default_setjmpf, pic_default_longjmpf, sizeof(jmp_buf), 0, NULL, NULL, xfopen(), xfopen(), xfopen());
 
   while (1) {
     printf("> ");
