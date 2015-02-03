@@ -1,7 +1,7 @@
 UCCDIR=~/workspace/ucc
 
 gaia:
-	$(UCCDIR)/bin/ucc -I./include *.c
+	$(UCCDIR)/bin/ucc -a '-Wno-unused-label' -I./include *.c
 	$(UCCDIR)/bin/sim -stat a.out
 
 clean:
