@@ -1,8 +1,8 @@
 UCCDIR=~/workspace/ucc
 
-gaia:
+run:
 	$(UCCDIR)/bin/ucc -a '-Wno-unused-label' -I./include *.c
-	$(UCCDIR)/bin/sim -stat a.out
+	$(UCCDIR)/bin/sim a.out
 
 clean:
 	rm -f a.out
