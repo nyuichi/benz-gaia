@@ -103,7 +103,7 @@ escape_call(pic_state *pic)
 
   pic_load_point(pic, e->data);
 
-  pic->longjmpf(((struct pic_escape *)e->data)->jmp, 1);
+  PIC_LONGJMP(pic, (void *)((struct pic_escape *)e->data)->jmp, 1);
 
   PIC_UNREACHABLE();
 }
@@ -132,7 +132,7 @@ pic_escape(pic_state *pic, struct pic_proc *proc)
 
   pic_save_point(pic, escape);
 
-  if (pic->setjmpf(escape->jmp)) {
+  if (PIC_SETJMP(pic, (void *)escape->jmp)) {
     return pic_values_by_list(pic, escape->results);
   }
   else {

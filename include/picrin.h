@@ -82,16 +82,14 @@ typedef struct {
 } pic_callinfo;
 
 typedef void *(*pic_allocf)(void *, size_t);
-typedef int (*pic_setjmpf)(void *);
-typedef void (*pic_longjmpf)(void *, int);
+typedef void (*pic_abortf)(void);
 
 typedef struct {
   int argc;
   char **argv, **envp;
 
   pic_allocf allocf;
-  pic_setjmpf setjmpf;
-  pic_longjmpf longjmpf;
+  pic_abortf abortf;
   size_t jmpbuf_size;
 
   struct pic_winder *wind;
@@ -176,7 +174,7 @@ void pic_gc_arena_restore(pic_state *, size_t);
     pic_gc_arena_restore(pic, ai);              \
   } while (0)
 
-pic_state *pic_open(pic_allocf, pic_setjmpf, pic_longjmpf, size_t jmpbuf_size, int argc, char *argv[], char **envp, xFILE *xstdin, xFILE *xstdout, xFILE *stderr);
+pic_state *pic_open(pic_allocf, pic_abortf, size_t jmpbuf_size, int argc, char *argv[], char **envp, xFILE *xstdin, xFILE *xstdout, xFILE *stderr);
 void pic_close(pic_state *);
 
 void pic_add_feature(pic_state *, const char *);

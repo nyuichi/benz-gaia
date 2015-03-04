@@ -146,7 +146,7 @@ pic_init_core(pic_state *pic)
 }
 
 pic_state *
-pic_open(pic_allocf allocf, pic_setjmpf setjmpf, pic_longjmpf longjmpf, size_t jmpbuf_size, int argc, char *argv[], char **envp, xFILE *xstdin, xFILE *xstdout, xFILE *xstderr)
+pic_open(pic_allocf allocf, pic_abortf abortf, size_t jmpbuf_size, int argc, char *argv[], char **envp, xFILE *xstdin, xFILE *xstdout, xFILE *xstderr)
 {
   struct pic_port *pic_make_standard_port(pic_state *, xFILE *, short);
   char t;
@@ -162,8 +162,7 @@ pic_open(pic_allocf allocf, pic_setjmpf setjmpf, pic_longjmpf longjmpf, size_t j
 
   /* functions */
   pic->allocf = allocf;
-  pic->setjmpf = setjmpf;
-  pic->longjmpf = longjmpf;
+  pic->abortf = abortf;
   pic->jmpbuf_size = jmpbuf_size;
 
   /* turn off GC */
